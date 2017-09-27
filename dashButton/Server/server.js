@@ -33,8 +33,8 @@ nodemailer.createTestAccount((err,account) => {
 
     let mailOptions = {
         from: '"Fred Foo" <email@email.com>',
-        to : 'email@email.com'
-        subject: 'AME 394 Test Email'
+        to : 'email@email.com',
+        subject: 'AME 394 Test Email',
         text: 'Yoooo',
         html: '<b>Hello world</b>'
     };
