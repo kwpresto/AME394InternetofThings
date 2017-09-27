@@ -32,10 +32,10 @@ nodemailer.createTestAccount((err,account) => {
     });
 
     let mailOptions = {
-        from: '"Fred Foo" <email@email.com>',
-        to : 'email@email.com',
+        from: '"Myself" <dukesterwilliamsiii@gmail.com>',
+        to : 'dukeasterwilliamsiii@gmail.com',
         subject: 'AME 394 Test Email',
-        text: 'Yoooo',
+        text: 'Hello World',
         html: '<b>Hello world</b>'
     };
 
