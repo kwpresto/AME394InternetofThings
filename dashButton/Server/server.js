@@ -19,7 +19,35 @@ app.use(errorHandler());
 console.log("Simple static server listening at http://" + hostname + ":" + port);
 app.listen(port);
 
-var nodemailer = require("nodemailer");
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+ service: 'gmail',
+ auth: {
+        user: 'dukeasterwilliamsiii@gmail.com',
+        pass: 'St0pMyH3@rtT0night'
+    }
+});
+
+const mailOptions = {
+  from: 'dukesterwilliamsiii@gmail.com', // sender address
+  to: 'dukeasterwilliamsiii@gmail.com', // list of receivers
+  subject: 'AME 394 Test Email', // Subject line
+  html: '<p>Hello world</p>'// plain text body
+};
+
+transporter.sendMail(mailOptions, function (err, info) {
+   if(err)
+     console.log(err)
+   else
+     console.log(info);
+});
+
+/*
+
+
+
+
 nodemailer.createTestAccount((err,account) => {
     let transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
@@ -47,6 +75,7 @@ nodemailer.createTestAccount((err,account) => {
         console.log('Preview URL: %s', nodemailer.getTestMessangerURL(info));
     });
 });
+*/
 
 
 //https://nodemailer.com/about/
