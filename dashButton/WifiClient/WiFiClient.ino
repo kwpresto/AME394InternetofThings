@@ -2,13 +2,17 @@
 //use node
 #include <ESP8266WiFi.h>
 
-const char* ssid     = "Tejaswi";
-const char* password = "12345678";
+//const char* ssid     = "Tejaswi";
+//const char* password = "12345678";
+
+const char* ssid     = "cantstopthafunk";
+const char* password = "fagtron808";
 
 
 //const char* host = "34.213.11.229"; //Prof's IP Address
 //const char* host = "209.147.144.4"; //My IP Address
-const char* host = "34.215.56.143"; //My MEAN Public IP Address
+//const char* host = "34.215.56.143"; //My MEAN Public IP Address
+const char* host = "52.27.153.157"; //My MEAN Public IP Address
 
 
 const int buttonPin = D2; 

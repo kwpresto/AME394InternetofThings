@@ -44,10 +44,6 @@ transporter.sendMail(mailOptions, function (err, info) {
 });
 
 /*
-
-
-
-
 nodemailer.createTestAccount((err,account) => {
     let transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
@@ -76,6 +72,4 @@ nodemailer.createTestAccount((err,account) => {
     });
 });
 */
-
-
 //https://nodemailer.com/about/
