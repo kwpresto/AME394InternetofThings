@@ -6,10 +6,25 @@ var methodOverride = require('method-override');
 var hostname = process.env.HOSTNAME || 'localhost';
 var port = 8080;
 
+var light;
+var temp;
+var humidity;
+
 app.get("/update", function (req, res) {
     console.log("GET req arrived")
     console.log(req.query);
-        res.send("1")
+    light = reqquery.light || light;
+    temp = req.query.temp || temp;
+    humidity = req.query.humidity || humidity;
+        res.sent("1");
+});
+
+app.get("/get", function (req, res) {
+    var outS = "";
+    outS += light + "<br>";
+    outS += temp + "<br>";
+    outS += humidity + "<br>";
+        res.sent(outS);
 });
 
 app.use(methodOverride());

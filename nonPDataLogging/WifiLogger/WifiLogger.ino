@@ -8,7 +8,7 @@ const char* password = "12345678";
 
 //const char* host = "34.213.11.229"; //Prof's IP Address
 //const char* host = "209.147.144.4"; //My IP Address
-const char* host = "34.215.56.143"; //My MEAN Public IP Address
+const char* host = "52.89.21.192"; //My MEAN Public IP Address
 
 const int buttonPin = A0; 
 int buttonState = 0;         // variable for reading the pushbutton status
@@ -60,8 +60,12 @@ void sendMessage(int val)
   }
   
   // We now create a URI for the request
-  String url = "/";
+  String url = "/update?val=";
   url += val;
+  /*
+   * url += "&temp=" 
+   * url += tval;
+   */
   Serial.print("Requesting URL: ");
   Serial.println(url);
   
@@ -91,10 +95,10 @@ void sendMessage(int val)
 
 void loop() {
   buttonState = analogRead(buttonPin);
-  //Serial.println(buttonState);
-  if(buttonState != lastVal){
+  Serial.println(buttonState);
+  //if(buttonState != lastVal){
     sendMessage(buttonState);
-  }
+  //}
   lastVal = buttonState;
   /*
   delay(5000);
