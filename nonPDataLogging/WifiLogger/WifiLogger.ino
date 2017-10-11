@@ -60,7 +60,7 @@ void sendMessage(int val)
   }
   
   // We now create a URI for the request
-  String url = "/update?val=";
+  String url = "/update?light=";
   url += val;
   /*
    * url += "&temp=" 
@@ -110,4 +110,3 @@ void loop() {
  
   */
 }
-
