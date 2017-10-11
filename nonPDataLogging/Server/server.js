@@ -13,18 +13,19 @@ var humidity;
 app.get("/update", function (req, res) {
     console.log("GET req arrived")
     console.log(req.query);
-    light = reqquery.light || light;
+    light = req.query.light || light;
     temp = req.query.temp || temp;
     humidity = req.query.humidity || humidity;
-        res.sent("1");
+        res.send("1")
 });
 
+
 app.get("/get", function (req, res) {
-    var outS = "";
-    outS += light + "<br>";
-    outS += temp + "<br>";
-    outS += humidity + "<br>";
-        res.sent(outS);
+  var outS = "";
+    outS +=  light + "<br>";
+    outS +=  temp + "<br>";
+    outS +=  humidity + "<br>";
+    res.send(outS)
 });
 
 app.use(methodOverride());
