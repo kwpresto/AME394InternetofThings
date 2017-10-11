@@ -22,15 +22,15 @@ app.get("/update", function (req, res) {
 
 app.get("/get", function (req, res) {
   var outS = "";
-    outS +=  light + "<br>";
-    outS +=  temp + "<br>";
-    outS +=  humidity + "<br>";
+    outS +=  "Light: " + light + "<br>";
+    outS +=  "Tempurature: " +temp + "<br>";
+    outS +=  "Humidity: " + humidity + "<br>";
     res.send(outS);
 });
 
 app.use(methodOverride());
 app.use(bodyParser());
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 app.use(errorHandler());
 
 console.log("Simple static server listening at http://" + hostname + ":" + port);
