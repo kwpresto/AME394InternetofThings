@@ -67,14 +67,18 @@ void sendMessage(int val)
     Serial.println("connection failed");
     return;
   }
+
+  float hval = dht.readHumidity();
+  //float t = dht.readTemperature();
+  float tval = dht.readTemperature(true);
   
   // We now create a URI for the request
   String url = "/update?light=";
   url += val;
   url += "&temp=";
-  url += t;
+  url += tval;
   url += "&humidity=";
-  url += h;
+  url += hval;
   /*
    * url += "&temp=" 
    * url += tval;
@@ -106,19 +110,7 @@ void sendMessage(int val)
   
 }
 
-void loop() {   
-  float h = dht.readHumidity();
-  //float t = dht.readTemperature();
-  float f = dht.readTemperature(true);
-
-  Serial.print("Humidity: ");
-  Serial.print(h);
-  Serial.print(" %\t");
-  Serial.print("Temperature: ");
-  Serial.print(t);
-  Serial.print(" *C ");
-  Serial.print(f);
-  Serial.print(" *F\t");
+void loop() {  
   
   buttonState = analogRead(buttonPin);
   Serial.println(buttonState);
