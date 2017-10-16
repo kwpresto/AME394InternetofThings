@@ -1,6 +1,14 @@
+//#include <Adafruit_Sensor.h>
+#include "DHT.h"
+//#include <DHT_U.h>
 
 //use node
 #include <ESP8266WiFi.h>
+
+#define DHTPIN D2
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
 
 const char* ssid     = "Tejaswi";
 const char* password = "12345678";
@@ -38,7 +46,8 @@ void setup() {
   Serial.println("WiFi connected");  
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-  
+
+  dht.begin();
 }
 
 int lastVal = 1;
@@ -62,6 +71,10 @@ void sendMessage(int val)
   // We now create a URI for the request
   String url = "/update?light=";
   url += val;
+  url += "&temp=";
+  url += t;
+  url += "&humidity=";
+  url += h;
   /*
    * url += "&temp=" 
    * url += tval;
@@ -93,7 +106,20 @@ void sendMessage(int val)
   
 }
 
-void loop() {
+void loop() {   
+  float h = dht.readHumidity();
+  //float t = dht.readTemperature();
+  float f = dht.readTemperature(true);
+
+  Serial.print("Humidity: ");
+  Serial.print(h);
+  Serial.print(" %\t");
+  Serial.print("Temperature: ");
+  Serial.print(t);
+  Serial.print(" *C ");
+  Serial.print(f);
+  Serial.print(" *F\t");
+  
   buttonState = analogRead(buttonPin);
   Serial.println(buttonState);
   //if(buttonState != lastVal){
