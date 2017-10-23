@@ -28,6 +28,15 @@ app.get("/get", function (req, res) {
     res.send(outS);
 });
 
+app.get("/getData", function (req, res) {
+  var rObj = {
+      light: light || "Unknown",
+      temp: temp || "Unknown",
+      humidity: humidity || "Unknown"
+  };
+    res.send(JSON.stringify(rObj));
+});
+
 app.use(methodOverride());
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
