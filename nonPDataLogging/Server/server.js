@@ -23,18 +23,20 @@ app.get("/update", function (req, res) {
 app.get("/get", function (req, res) {
   var outS = "";
     outS +=  "Light: " + light + "<br>";
-    outS +=  "Tempurature: " +temp + "<br>";
-    outS +=  "Humidity: " + humidity + "<br>";
+    outS +=  "Temperature: " + temp + "<br>";
+    outS +=  "Humidity: " + humidity;
     res.send(outS);
 });
 
+
 app.get("/getData", function (req, res) {
   var rObj = {
-      light: light || "Unknown",
-      temp: temp || "Unknown",
-      humidity: humidity || "Unknown"
+    "light": light || "NA",
+    "temp": temp || "NA",
+    "humidity": humidity || "NA"
   };
-    res.send(JSON.stringify(rObj));
+  console.log(rObj);
+  res.send(JSON.stringify(rObj));
 });
 
 app.use(methodOverride());
