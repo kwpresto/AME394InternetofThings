@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<script src="asyncReq.js"> </script>
+<script>
+    var oldObj = {}
+    
+	var x = function(){
+		loadFile("./getData", function(data){
+		 	var obj = JSON.parse(data);
+            var markup = "";
+            var change = 0;            
+            
+            var tdiff = obj.temp - oldObj.temp;
+            var tclass = "neutral";
+            var tsymbol = "";
+            
+            var hdiff = obj.humidity - oldObj.humidity;
+            var hclass = "neutral";
+            var hsymbol = "";
+            
+            var ldiff = obj.light - oldObj.light;
+            var lclass = "neutral";
+            var lsymbol = "";
+            
+            if (tdiff != 0 || hdiff != 0 || ldiff != 0)
+                change = 1;
+            
+            if(tdiff > 0)
+                tclass = "decrease",
+                tsymbol = "&#8593;";
+            else if (tdiff < 0)
+                tclass = "increase",
+                tsymbol = "&#8595;";
+            else if (tdiff == 0)
+                tdiff = "--";
+            
+            if(hdiff > 0)
+                hclass = "decrease",
+                hsymbol = "&#8593;";
+            else if (hdiff < 0)
+                hclass = "increase",
+                hsymbol = "&#8595;";
+            else if (hdiff == 0)
+                hdiff = "--";
+            
+            if(ldiff > 0)
+                lclass = "decrease",
+                lsymbol = "&#8593;";
+            else if (ldiff < 0)
+                lclass = "increase",
+                lsymbol = "&#8595;";
+            else if (ldiff == 0)
+                ldiff = "--";
+            
+            
+            
+            markup +=
+                "<p><b>Temperature:</b><p class='" + tclass + "'>" + tsymbol + " " + obj.temp + "&#176 F (" + tdiff + ")</p>";
+            
+            markup +=
+                "<p><b>Humidity:</b><p class='" + hclass + "'>" + hsymbol + " " + obj.humidity + " (" + hdiff + ")</p>";
+            
+            markup +=
+                "<p><b>Light:</b><p class='" + lclass + "'>" + lsymbol + " " +obj.light + " (" + ldiff + ")</p>";
+            
+            if (change == 1)
+                document.getElementById("results").innerHTML = markup;
+            
+            oldObj = obj;
+		});
+	  }
+    
+function start(){
+    x();
+    setInterval("x()", 1000);
+}
+
+</script>
+    
+<style>
+	body {
+		text-align: center;
+	}
+	b, bold, strong {
+		text-transform: capitalize;
+	}
+    
+    .increase {
+        color: orangered;
+    }
+    
+    .decrease {
+        color: forestgreen;
+    }
+    
+    .neutral {
+        color: black;
+    }
+    
+</style>
+
+</head>
+
+<body onload='start()'>
+<h1> Sensor Data </h1>
+<div id='results'> </div>
+
+</body>
+</html>
